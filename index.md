@@ -1,37 +1,50 @@
-## Welcome to GitHub Pages
+  <!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
 
-You can use the [editor on GitHub](https://github.com/GAMESSITE/GAMESSITE.github./edit/master/index.md) to maintain and preview the content for your website in Markdown files.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+  <link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
+</head>
+<body>
 
-### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+  <video-js id="my_video_1" class="vjs-default-skin" controls preload="auto" width="640" height="268">
+    <source src="http://example.com/iptv.mru8" type="application/x-mpegURL">
+  </video-js>
 
-```markdown
-Syntax highlighted code block
+  <script src="https://unpkg.com/video.js/dist/video.js"></script>
+  <script src="https://unpkg.com/@videojs/http-streaming/dist/videojs-http-streaming.js"></script>
 
-# Header 1
-## Header 2
-### Header 3
+  <script>
+    var player = videojs('my_video_1');
+  </script>
+ <script>
+document.getElementById('file').onchange = function(){
 
-- Bulleted
-- List
+  var file = this.files[0];
 
-1. Numbered
-2. List
+  var reader = new FileReader();
+  reader.onload = function(progressEvent){
+    // Entire file
+    console.log(this.result);
 
-**Bold** and _Italic_ and `Code` text
+    // By lines
+    var lines = this.result.split('\n');
+    for(var line = 0; line < lines.length; line++){
+      console.log(lines[line]);
+    }
+  };
+  reader.readAsText(file);
+}; 
 
-[Link](url) and ![Image](src)
-```
+  var mySubString = str.line(
+    str.lastIndexOf("#EXTINF:-1,") + 1, 
+    str.lastIndexOf("http:/")
+);
+</script>
+<input type="file" name="file" id="file">
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/GAMESSITE/GAMESSITE.github./settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+</body>
+</html>
